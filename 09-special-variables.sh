@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo" all variables to be sent to $@"
+echo "all variables to be sent to $@"
