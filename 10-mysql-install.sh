@@ -23,3 +23,20 @@ then
 else 
     echo " it's there dude , check and ask"
 fi
+
+yum list installed mysql
+
+if [ $? -ne 0 ]
+then
+    echo "it is not there , will install"
+    yum install mysql -y
+    if [ $? -ne 0 ]
+    then
+        echo "MySQL installation is failed , please check" #this has to be run in sudo to check
+        exit 1
+    else 
+        echo "MySQL installation is success"
+    fi
+else 
+    echo " it's there dude , check and ask"
+fi
