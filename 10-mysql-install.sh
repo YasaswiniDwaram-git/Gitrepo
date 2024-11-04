@@ -7,4 +7,12 @@ then
     exit 1
 fi
 
-dnf install git -y
+dnf list installed git
+
+if [ $? -e 0 ]
+then
+    echo "it is not there , will install"
+    dnf install git -y
+else 
+    echo " it's there dude , check adn ask"
+fi
