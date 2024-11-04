@@ -14,5 +14,5 @@ then
     echo "it is not there , will install"
     dnf install git -y
 else 
-    echo " it's there dude , check adn ask"
+    echo " it's there dude , check and ask"
 fi
