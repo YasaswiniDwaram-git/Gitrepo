@@ -13,6 +13,13 @@ if [ $? -ne 0 ]
 then
     echo "it is not there , will install"
     yum install git -y
+    if [ $? -ne 0 ]
+    then
+        echo "Git installation is failed , please check"
+        exit 1
+    else 
+        echo "Git installation is success"
+    fi
 else 
     echo " it's there dude , check and ask"
 fi
