@@ -28,7 +28,7 @@ yum list installed mysql
 
 if [ $? -ne 0 ]
 then
-    echo "it is not there , will install"
+    echo "MySQL is not there , will install"
     yum install mysql -y
     if [ $? -ne 0 ]
     then
