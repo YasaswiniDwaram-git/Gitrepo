@@ -15,7 +15,7 @@ then
     yum install git -y
     if [ $? -ne 0 ]
     then
-        echo "Git installation is failed , please check"
+        echo "Git installation is failed , please check" #this has to be run in sudo to check
         exit 1
     else 
         echo "Git installation is success"
