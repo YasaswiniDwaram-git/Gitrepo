@@ -8,7 +8,7 @@ LOGS_FOLDER="/var/log/shell-scriptings"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME/$TIME_STAMP.log"
-mkdir -p $LOGS_FOLDER
+sudo mkdir -p $LOGS_FOLDER
 
 CHECK_ROOT(){
 if [ $USERID -ne 0 ]
