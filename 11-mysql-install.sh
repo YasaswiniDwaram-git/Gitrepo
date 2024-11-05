@@ -12,8 +12,6 @@ else
 fi
 }
 
-CHECK_ROOT
-
 VALIDATE(){
     if [ $? -ne 0 ]
     then
