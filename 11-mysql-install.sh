@@ -1,18 +1,20 @@
 #!/bin/bash
 
 USERID=$(id -u)
+
+CHECK_ROOT(){
 if [ $USERID -ne 0 ]
 then
     echo "please run script with root access"
     exit 1
+else 
+    echo "welcome admin , anything for you today? "
 fi
+}
 
-yum list installed git
+CHECK_ROOT
 
-if [ $? -ne 0 ]
-then
-    echo "it is not there , will install"
-    yum install git -y
+VALIDATE(){
     if [ $? -ne 0 ]
     then
         echo "Git installation is failed , please check" #this has to be run in sudo to check
@@ -20,23 +22,23 @@ then
     else 
         echo "Git installation is success"
     fi
-else 
-    echo " it's there dude , check and ask"
-fi
+}
 
-yum list installed mysql
-
-if [ $? -ne 0 ]
-then
-    echo "MySQL is not there , will install"
-    yum install mysql -y
-    if [ $? -ne 0 ]
+#here 
+for PACKAGE in $@
+do
+    dnf list installed $PACKAGE
+    if [$? -eq 0 ]
     then
-        echo "MySQL installation is failed , please check" #this has to be run in sudo to check
-        exit 1
-    else 
-        echo "MySQL installation is success"
+        echo "$PACKAGE is already installed , nothing to do"
+    else
+        echo "$PACKAGE is not installed , going to install it now "
+        dnf install $PACKAGE -y
+        VALIDATE $? "Installing $PACKAGE"
     fi
-else 
-    echo " it's there dude , check and ask"
-fi
+
+done
+
+
+
+
