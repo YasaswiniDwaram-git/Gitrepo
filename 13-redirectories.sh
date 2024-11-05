@@ -39,7 +39,7 @@ VALIDATE(){
     fi
 }
 
-if [$# -eq 0]
+if [ $# -eq 0 ]
 then
     USAGE
 fi
@@ -47,7 +47,7 @@ fi
 for PACKAGE in $@
 do
     dnf list installed $PACKAGE &>>$LOG_FILE
-    if [$? -eq 0 ]
+    if [ $? -eq 0 ]
     then
         echo -e "$PACKAGE is already $Y installed $N, nothing to do" &>>$LOG_FILE
     else
