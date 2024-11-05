@@ -14,10 +14,10 @@ mkdir -p $LOGS_FOLDER
 CHECK_ROOT(){
 if [ $USERID -ne 0 ]
 then
-    echo "$R please run script with root access $N" &>>$LOGS_FILE
+    echo "$R please run script with root access $N" &>>$LOG_FILE
     exit 1
 else 
-    echo "welcome admin , anything for you today? " &>>$LOGS_FILE
+    echo "welcome admin , anything for you today? " &>>$LOG_FILE
 fi
 }
 
@@ -31,10 +31,10 @@ CHECK_ROOT
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo -e "$2 is....$R FAILED $N" &>>$LOGS_FILE
+        echo -e "$2 is....$R FAILED $N" &>>$LOG_FILE
         exit 1
     else 
-        echo -e "$2 is....$G success $N" &>>$LOGS_FILE
+        echo -e "$2 is....$G success $N" &>>$LOG_FILE
     fi
 }
 
@@ -45,14 +45,14 @@ fi
 
 for PACKAGE in $@
 do
-    dnf list installed $PACKAGE &>>$LOGS_FILE
+    dnf list installed $PACKAGE &>>$LOG_FILE
     if [ $? -eq 0 ]
     then
-        echo -e "$PACKAGE is already $Y installed $N, nothing to do" &>>$LOGS_FILE
+        echo -e "$PACKAGE is already $Y installed $N, nothing to do" &>>$LOG_FILE
     else
-        echo "$PACKAGE is not installed , going to install it now " &>>$LOGS_FILE
+        echo "$PACKAGE is not installed , going to install it now " &>>$LOG_FILE
         dnf install $PACKAGE -y &>>$LOGS_FILE
-        VALIDATE $? "Installing $PACKAGE" &>>$LOGS_FILE
+        VALIDATE $? "Installing $PACKAGE" &>>$LOG_FILE
     fi
 
 done
