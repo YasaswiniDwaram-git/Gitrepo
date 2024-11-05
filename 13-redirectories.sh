@@ -51,7 +51,7 @@ do
         echo -e "$PACKAGE is already $Y installed $N, nothing to do" &>>$LOG_FILE
     else
         echo "$PACKAGE is not installed , going to install it now " &>>$LOG_FILE
-        dnf install $PACKAGE -y &>>$LOGS_FILE
+        dnf install $PACKAGE -y &>>$LOG_FILE
         VALIDATE $? "Installing $PACKAGE" &>>$LOG_FILE
     fi
 
