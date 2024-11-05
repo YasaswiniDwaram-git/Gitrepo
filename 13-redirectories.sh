@@ -21,6 +21,12 @@ else
 fi
 }
 
+USAGE(){
+    echo -e "$R USAGE: $N sudo sh 13-redirectories.sh pkg1 pkg2..."
+    exit 1
+    
+}
+
 CHECK_ROOT
 
 VALIDATE(){
@@ -33,12 +39,17 @@ VALIDATE(){
     fi
 }
 
+if [$# -eq 0]
+then
+    USAGE
+fi
+
 for PACKAGE in $@
 do
     dnf list installed $PACKAGE &>>$LOG_FILE
     if [$? -eq 0 ]
     then
-        echo "$PACKAGE is already $Y installed , nothing to do" &>>$LOG_FILE
+        echo -e "$PACKAGE is already $Y installed $N, nothing to do" &>>$LOG_FILE
     else
         echo "$PACKAGE is not installed , going to install it now " &>>$LOG_FILE
         dnf install $PACKAGE -y &>>$LOG_FILE
