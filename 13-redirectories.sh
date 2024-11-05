@@ -3,12 +3,13 @@ USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 N="\e[0m]"
+Y="\e[33m]"
 
 LOGS_FOLDER="/var/log/shell-scriptings"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME/$TIME_STAMP.log"
-sudo mkdir -p $LOGS_FOLDER
+mkdir -p $LOGS_FOLDER
 
 CHECK_ROOT(){
 if [ $USERID -ne 0 ]
@@ -16,7 +17,7 @@ then
     echo "$R please run script with root access $N" &>>$LOG_FILE
     exit 1
 else 
-    echo "welcome admin , anything for you today? "
+    echo "welcome admin , anything for you today? " &>>$LOG_FILE
 fi
 }
 
@@ -34,13 +35,13 @@ VALIDATE(){
 
 for PACKAGE in $@
 do
-    dnf list installed $PACKAGE
+    dnf list installed $PACKAGE &>>$LOG_FILE
     if [$? -eq 0 ]
     then
-        echo "$PACKAGE is already installed , nothing to do" &>>$LOG_FILE
+        echo "$PACKAGE is already $Y installed , nothing to do" &>>$LOG_FILE
     else
         echo "$PACKAGE is not installed , going to install it now " &>>$LOG_FILE
-        dnf install $PACKAGE -y
+        dnf install $PACKAGE -y &>>$LOG_FILE
         VALIDATE $? "Installing $PACKAGE" &>>$LOG_FILE
     fi
 
