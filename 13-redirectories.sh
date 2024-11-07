@@ -52,7 +52,7 @@ do
     else
         echo "$PACKAGE is not installed , going to install it now " | tee -a &>>$LOG_FILE
         dnf install $PACKAGE -y &>>$LOG_FILE
-        VALIDATE $? "Installing $PACKAGE" &>>$LOG_FILE
+        VALIDATE $? "Installing $PACKAGE"
     fi
 
 done
