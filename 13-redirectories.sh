@@ -14,7 +14,7 @@ mkdir -p $LOGS_FOLDER
 CHECK_ROOT(){
 if [ $USERID -ne 0 ]
 then
-    echo "$R please run script with root access $N" &>>$LOG_FILE
+    echo "$R please run script with root access $N" | tee -a &>>$LOG_FILE
     exit 1
 else 
     echo "welcome admin , anything for you today? " &>>$LOG_FILE
@@ -22,7 +22,7 @@ fi
 }
 
 USAGE(){
-    echo -e "$R USAGE: $N sudo sh 13-redirectories.sh pkg1 pkg2..."
+    echo -e "$R USAGE: $N sudo sh 13-redirectories.sh pkg1 pkg2..." 
     exit 1   
 }
 
@@ -31,10 +31,10 @@ CHECK_ROOT
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo -e "$2 is....$R FAILED $N" &>>$LOG_FILE
+        echo -e "$2 is....$R FAILED $N" | tee -a &>>$LOG_FILE
         exit 1
     else 
-        echo -e "$2 is....$G success $N" &>>$LOG_FILE
+        echo -e "$2 is....$G success $N" | tee -a &>>$LOG_FILE
     fi
 }
 
@@ -48,9 +48,9 @@ do
     dnf list installed $PACKAGE &>>$LOG_FILE
     if [ $? -eq 0 ]
     then
-        echo -e "$PACKAGE is already $Y installed $N, nothing to do" &>>$LOG_FILE
+        echo -e "$PACKAGE is already $Y installed $N, nothing to do" | tee -a &>>$LOG_FILE
     else
-        echo "$PACKAGE is not installed , going to install it now " &>>$LOG_FILE
+        echo "$PACKAGE is not installed , going to install it now " | tee -a &>>$LOG_FILE
         dnf install $PACKAGE -y &>>$LOG_FILE
         VALIDATE $? "Installing $PACKAGE" &>>$LOG_FILE
     fi
