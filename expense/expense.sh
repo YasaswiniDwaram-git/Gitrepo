@@ -45,7 +45,7 @@ STEP_STATUS(){
     fi
 }
 
-dnf install mysql_server -y
+dnf install mysql-server -y
 VALIDATE $? "Installing MySQL server" | tee -a $LOG_FILE
 STEP_STATUS $? "Installation successfull , now enabling MYSQL" | tee -a $LOG_FILE
 
