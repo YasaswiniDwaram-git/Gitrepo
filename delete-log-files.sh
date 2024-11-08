@@ -9,3 +9,4 @@ else
     echo "$SOURCE_DIRECTORY does not exist"
 fi
 
+LOG_FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14)
