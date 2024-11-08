@@ -10,3 +10,4 @@ else
 fi
 
 LOG_FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14)
+echo "Files are : $LOG_FILES"
