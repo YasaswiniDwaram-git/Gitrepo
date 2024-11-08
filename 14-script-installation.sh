@@ -45,7 +45,7 @@ STEP_STATUS(){
     fi
 }
 
-dnf install mysql-server -y
+dnf install mysql_server -y
 VALIDATE $? "Installing MySQL server" | tee -a $LOG_FILE
 STEP_STATUS $? "Installation successfull , now enabling MYSQL" | tee -a $LOG_FILE
 
@@ -60,3 +60,4 @@ STEP_STATUS $? "starting successfull , now setting up root password MYSQL" | tee
 mysql_secure_installation --set-root-pass ExpenseApp@1
 VALIDATE $? " setting up in progess"
 STEP_STATUS $? "setting up root password is successful , now you can use my sql by typing 'mysql'" | tee -a $LOG_FILE
+

@@ -28,7 +28,6 @@ VALIDATE(){
     fi
 }
 
-#here 
 for PACKAGE in $@
 do
     dnf list installed $PACKAGE
