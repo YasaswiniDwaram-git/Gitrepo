@@ -51,7 +51,7 @@ if [ ! -z "$LOG_FILES" ] # -z if true if file is empty but ! makes it as files i
 then
     echo "Files are found"
     dnf install zip -y
-    if [ $? -ne 0]
+    if [ $? -ne 0 ]
     then
         echo "$G zip installed successfully $N"
     fi
