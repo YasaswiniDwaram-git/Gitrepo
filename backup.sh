@@ -34,7 +34,8 @@ LOG_FILES=$(find $OURCE_DIRECTORY -name "*.log" -mtime +14) #to list 14 days log
 
 #check files if exist or not in the directory , if zero , nothing to do else zip them
 
-if [ -n $LOG_FILES]
+
+if [ -n $LOG_FILES ]
 then
     echo "Files are found"
 else
