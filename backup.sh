@@ -51,12 +51,16 @@ if [ ! -z "$LOG_FILES" ] # -z if true if file is empty but ! makes it as files i
 then
     echo "Files are found"
     dnf install zip -y
+    if [ $? -ne 0]
+    then
+        echo "$G zip installed successfully $N"
+    fi
     ZIP_FILE= $DESTINATION_DIRECTORY/app-logs-$TIME_STAMP.zip  #creating a zip file name with timestamp and moving zip
     find ${SOURCE_DIRECTORY} "*.log" -mtime +14 | zip "$ZIP_FILE" -@
     #check if zip is sucessfully created or not
     if [ -f $ZIP_FILE ]
     then
-        echo "$R successfully zipped files older than $NUMBER_OF_DAYS $N"
+        echo "$G successfully zipped files older than $NUMBER_OF_DAYS $N"
         while IFS= read -r file #internal field seperator ,it will not ingnore white space , -r will not ignore spl characters like /@$#%
         do
             echo "Deleting file :$file" 
