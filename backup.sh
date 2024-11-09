@@ -35,7 +35,7 @@ LOG_FILES=$(find ${SOURCE_DIRECTORY} -name "*.log" -mtime +14) #to list 14 days 
 #check files if exist or not in the directory , if zero , nothing to do else zip them
 echo "Files present are : $LOG_FILES"
 
-if [ ! -z  "$LOG_FILES" ] # -z if true if file is empty but ! makes it as files is not empty
+if [ ! -z $LOG_FILES ] # -z if true if file is empty but ! makes it as files is not empty
 then
     echo "Files are found"
 else
