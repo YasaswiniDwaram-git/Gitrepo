@@ -54,6 +54,8 @@ then
     if [ $? -ne 0 ]
     then
         echo "$G zip installed successfully $N"
+    else 
+        echo "zip already installed..SKIPPING"
     fi
     ZIP_FILE= $DESTINATION_DIRECTORY/app-logs-$TIME_STAMP.zip  #creating a zip file name with timestamp and moving zip
     find ${SOURCE_DIRECTORY} "*.log" -mtime +14 | zip "$ZIP_FILE" -@
