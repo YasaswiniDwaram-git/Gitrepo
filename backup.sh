@@ -57,12 +57,12 @@ then
     else 
         echo "zip already installed..SKIPPING"
     fi
-    ZIP_FILE= $DESTINATION_DIRECTORY/app-logs-$TIME_STAMP.zip  #creating a zip file name with timestamp and moving zip
-    find ${SOURCE_DIRECTORY} "*.log" -mtime +14 | zip "$ZIP_FILE" -@
+    ZIP_FILE= "$DESTINATION_DIRECTORY/app-logs-$TIME_STAMP.zip"  #creating a zip file name with timestamp and moving zip
+    find ${SOURCE_DIRECTORY} -name "*.log" -mtime +14 | zip "$ZIP_FILE" -@
     #check if zip is sucessfully created or not
     if [ -f $ZIP_FILE ]
     then
-        echo "$G successfully zipped files older than $NUMBER_OF_DAYS $N"
+        echo -e "$G successfully zipped files older than $NUMBER_OF_DAYS $N"
         while IFS= read -r file #internal field seperator ,it will not ingnore white space , -r will not ignore spl characters like /@$#%
         do
             echo "Deleting file :$file" 
@@ -70,6 +70,7 @@ then
         done <<< $LOG_FILES 
     else
         echo -e "$R Zipping the files is failed $N"
+        exit 1
     fi
 else
     echo " No files older than $NUMBER_OF_DAYS"
