@@ -9,6 +9,7 @@ Y="\e[33m"
 SOURCE_DIRECTORY=$1
 DESTINATION_DIRECTORY=$2
 NUMBER_OF_DAYS=${3:-14} # if given  , the consider $3 , else will take 14 days
+TIME_STAMP=$(date +%Y-%m-%d-%H-%M-%S)
 
 USAGE(){
     echo -e "$R input format should be : $N <source_directory> <destination_directory> <days(optional)>"
@@ -50,7 +51,20 @@ if [ ! -z "$LOG_FILES" ] # -z if true if file is empty but ! makes it as files i
 then
     echo "Files are found"
     dnf install zip -y
-    find . -name "*.log" -mtime +14 | zip apps.zip -@
+    ZIP_FILE= $DESTINATION_DIRECTORY/app-logs-$TIME_STAMP.zip  #creating a zip file name with timestamp and moving zip
+    find ${SOURCE_DIRECTORY} "*.log" -mtime +14 | zip "$ZIP_FILE" -@
+    #check if zip is sucessfully created or not
+    if [ -f $ZIP_FILE ]
+    then
+        echo "$R successfully zipped files older than $NUMBER_OF_DAYS $N"
+        while IFS= read -r file #internal field seperator ,it will not ingnore white space , -r will not ignore spl characters like /@$#%
+        do
+            echo "Deleting file :$file" 
+            rm -rf $file
+        done <<< $LOG_FILES 
+    else
+        echo "$R Zipping the files is failed $N"
+    fi
 else
     echo " No files older than $NUMBER_OF_DAYS"
 fi
