@@ -57,7 +57,7 @@ then
     else 
         echo "zip already installed..SKIPPING"
     fi
-    ZIP_FILE= "$DESTINATION_DIRECTORY/app-logs-$TIME_STAMP.zip"  #creating a zip file name with timestamp and moving zip
+    ZIP_FILE="$DESTINATION_DIRECTORY/app-logs-$TIME_STAMP.zip"  #creating a zip file name with timestamp and moving zip
     find ${SOURCE_DIRECTORY} -name "*.log" -mtime +14 | zip "$ZIP_FILE" -@
     #check if zip is sucessfully created or not
     if [ -f $ZIP_FILE ]
