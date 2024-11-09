@@ -18,7 +18,7 @@ USAGE(){
 CHECK_ROOT(){
 if [ $USERID -ne 0 ]
 then
-    echo "$R please run script with root access $N"
+    echo -e "$R please run script with root access $N"
     exit 1
 fi
 }
@@ -53,7 +53,7 @@ then
     dnf install zip -y
     if [ $? -ne 0 ]
     then
-        echo "$G zip installed successfully $N"
+        echo -e "$G zip installed successfully $N"
     else 
         echo "zip already installed..SKIPPING"
     fi
@@ -69,7 +69,7 @@ then
             rm -rf $file
         done <<< $LOG_FILES 
     else
-        echo "$R Zipping the files is failed $N"
+        echo -e "$R Zipping the files is failed $N"
     fi
 else
     echo " No files older than $NUMBER_OF_DAYS"
