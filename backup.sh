@@ -30,7 +30,7 @@ then
     echo -e " $R $DESTINATION_DIRECTORY is not present $N, please check"
 fi
 
-LOG_FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14) #to list 14 days logs
+LOG_FILES=$(find ${SOURCE_DIRECTORY} -name "*.log" -mtime +14) #to list 14 days logs
 
 #check files if exist or not in the directory , if zero , nothing to do else zip them
 echo "Files present are : $LOG_FILES"
