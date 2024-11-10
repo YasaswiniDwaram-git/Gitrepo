@@ -7,6 +7,5 @@ while IFS= read -r line #internal field seperator ,it will not ingnore white spa
 do 
     WORD_COUNT=$(echo $line |wc -w)
     echo "Total words in line is : $WORD_COUNT"
-    echo "First 5 word are : $(echo "$line" | cut -d " " -f1-5)
+    echo "First 5 word are : $(echo "$line" | cut -d " " -f1-5)"
 done < $READ_FILE
-
