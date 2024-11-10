@@ -8,5 +8,5 @@ do
     WORD_COUNT=$(echo $line |wc -w)
     echo "Total words in line is : $WORD_COUNT"
     echo "First 5 word are :$line" | cut -d " " -f1-5
-done <<< $READ_FILE
+done < $READ_FILE
 
