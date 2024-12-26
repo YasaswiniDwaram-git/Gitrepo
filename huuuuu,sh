@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Input data
+lines="touch > txt.file
+patch 5.2.0 pypi
+remote 8.6.3 pypi
+cherryred 9.6.3"
+
+# Iterate through each line
+while IFS= read -r line; do
+    # Check if the line contains 'pypi'
+    if [[ "$line" == *"pypi"* ]]; then
+        # Extract the package name and version
+        package=$(echo "$line" | awk '{print $1}')
+        version=$(echo "$line" | awk '{print $2}')
+        # Output in the required format
+        echo "$package==$version"
+    fi
+done <<< "$lines"
